@@ -12,7 +12,25 @@ type Trade struct {
 	Buy    bool    // true if buy trade, false if sell trade
 }
 
+// Value returns the trade value
+func (t *Trade) Value() float64 {
+	value := float64(t.Volume) * t.Price
+	if t.Buy {
+		value = -value
+	}
+	return value
+}
+
 func main() {
+
+	t := Trade{
+		Symbol: "MSFT",
+		Volume: 10,
+		Price:  99.98,
+		Buy:    true,
+	}
+	fmt.Println(t.Value())
+
 	t1 := Trade{"MSFT", 10, 99.98, true}
 	fmt.Println(t1)
 
